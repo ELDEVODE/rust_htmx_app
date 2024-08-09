@@ -1,1 +1,1 @@
-web: PORT=$PORT ./target/release/rust_htmx_app
+web: target/release/rust_htmx_app
