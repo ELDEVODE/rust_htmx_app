@@ -69,7 +69,7 @@ async fn hello(query: web::Query<HelloQuery>) -> impl Responder {
 async fn main() -> std::io::Result<()> {
     let tera = Tera::new("templates/**/*").unwrap();
 
-    let port = env::var("FUNCTIONS_CUSTOMHANDLER_PORT")
+    let port = std::env::var("PORT")
         .unwrap_or_else(|_| "8080".to_string())
         .parse()
         .expect("Invalid port number");
