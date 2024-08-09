@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Joke Generator</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .htmx-indicator {
+        display: none;
+      }
+      .htmx-request .htmx-indicator {
+        display: block;
+      }
+      .htmx-request.htmx-indicator {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+      <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">
+        Random Joke Generator
+      </h1>
+      <div
+        id="joke-container"
+        class="mb-6 min-h-[100px] flex items-center justify-center"
+      >
+        <p class="text-gray-500 italic">Click the button to get a joke!</p>
+      </div>
+      <button
+        hx-get="/get-joke"
+        hx-target="#joke-container"
+        hx-indicator=""
+        #loading
+        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+      >
+        Get New Joke
+      </button>
+
+      <div id="loading" class="htmx-indicator">
+        <p class="text-gray-500">Loading...</p>
+      </div>
+    </div>
+  </body>
+</html>
