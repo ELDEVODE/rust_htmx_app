@@ -69,11 +69,6 @@ async fn hello(query: web::Query<HelloQuery>) -> impl Responder {
 async fn main() -> std::io::Result<()> {
     let tera = Tera::new("templates/**/*").unwrap();
 
-    let port = std::env::var("PORT")
-        .unwrap_or_else(|_| "8080".to_string())
-        .parse()
-        .expect("Invalid port number");
-
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(tera.clone()))
@@ -83,7 +78,7 @@ async fn main() -> std::io::Result<()> {
             .route("/like-joke", web::post().to(like_joke))
             .route("/api/HttpExample", web::get().to(hello))
     })
-    .bind(("127.0.0.1", port))?
+    .bind("127.0.0.1:8000")?
     .run()
     .await
 }
